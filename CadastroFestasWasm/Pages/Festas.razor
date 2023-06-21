@@ -1,0 +1,11 @@
+﻿@page "/festas"
+
+<h3>Festas</h3>
+
+@code {
+    private AcessoApi<FestaDO> api = new AcessoApi<FestaDO>("api/Festa");
+
+    private IList<FestaDO>? festas;
+
+    private FestaDO festaAtual = new FestaDO();
+}
