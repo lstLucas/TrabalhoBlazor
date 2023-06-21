@@ -1,0 +1,48 @@
+@page "/itens_incluir"
+@using CadastroFestasWasm.Helpers;
+@using CadastroFestaDll.DOs;
+
+<h3>Incluindo Item</h3>
+<!--
+<div>
+    <div>
+        <label class="form-label">Nome</label>
+        <input class="form-control" @bind="@obj.Nome" />
+    </div>
+    <div>
+        <label class="form-label">Altura</label>
+        <input class="form-control" @bind="@obj.Altura" />
+    </div>
+    <div>
+        <label class="form-label">Peso</label>
+        <input class="form-control" @bind="@obj.Peso" />
+    </div>
+    <div class="mt-2">
+        <button class="btn btn-success" @onclick="Gravar">Gravar</button>
+        <a class="ml-1 btn btn-secondary" href="./atletas">Voltar</a>
+    </div>
+</div>
+-->
+
+@code {
+    private AcessoApi<FestaDO> api = new AcessoApi<FestaDO>("api/Festa");
+
+    private IList<FestaDO>? festas;
+
+    private FestaDO festaAtual = new FestaDO();
+
+    /*private AcessoApi<AtletaDO> api = new AcessoApi<AtletaDO>("api/Atleta");
+
+    private AtletaDO obj = new AtletaDO();
+
+    [Parameter]
+    public string Id { get; set; } = "";
+
+    private async void Gravar()
+    {
+        var objRetorno = await api.InserirAsync(obj);
+        
+        if (objRetorno != null)
+            NavigationManager.NavigateTo($"atleta_alterar/{objRetorno.Id}");
+    }*/
+}
