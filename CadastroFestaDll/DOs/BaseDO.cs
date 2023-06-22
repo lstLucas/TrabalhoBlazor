@@ -1,4 +1,4 @@
-﻿namespace CadastroFestaDll.DOs
+namespace CadastroFestaDll.DOs
 {
     public class BaseDO
     {

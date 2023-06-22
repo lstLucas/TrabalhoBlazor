@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +15,6 @@ namespace CadastroFestaDll.DOs
         [StringLength(100, ErrorMessage = "O nome deve ter menos que 100 caracteres.")]
         public string Nome { get; set; }
 
-        public DateTime Data { get; set; }
+        public int Quantidade { get; set; }
     }
 }
