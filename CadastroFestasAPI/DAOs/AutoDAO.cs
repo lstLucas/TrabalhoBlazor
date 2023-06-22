@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using MySql.Data.MySqlClient;
-using CadastroAtletaApi.Models;
+using CadastroFestasAPI.Models;
 using Dapper;
 
 namespace CadastroAtletaApi.DAOs
@@ -193,7 +193,7 @@ namespace CadastroAtletaApi.DAOs
 
 
 
-            return ConfigBd.StringConexao;
+            return ConfigDB.StringConexao;
         }
     }
 }

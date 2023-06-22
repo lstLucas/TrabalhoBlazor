@@ -2,12 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using CadastroAtletaApi.Models;
+using CadastroFestasAPI.Models;
 
 namespace CadastroAtletaApi.DAOs
 {
-    public class AtletaDAO : AutoDAO<Atleta>
+    public class AtletaDAO : AutoDAO<festa>
     {
-        protected override string Tabela => "atleta";
+        protected override string Tabela => "festa";
     }
 }
