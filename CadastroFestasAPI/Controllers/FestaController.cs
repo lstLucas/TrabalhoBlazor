@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-//using CadastroAtletaApi.Models;
-//using CadastroAtletaApi.DAOs;
-//using CadastroAtletaApi.Controllers.Extensoes;
+using CadastroFestasAPI.Models;
+using CadastroFestasAPI.DAOs;
+using CadastroFestasAPI.Controllers.Extensoes;
 using CadastroFestaDll.DOs;
 
-namespace CadastroFestasApi.Controllers
+namespace CadastroFestasAPI.Controllers
 {
-        [ApiController]
+    [ApiController]
     [Route("api/[controller]")]
     public class FestaController : ControllerBase
     {

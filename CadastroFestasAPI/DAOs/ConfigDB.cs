@@ -1,4 +1,4 @@
-namespace CadastroAtletaApi.DAOs
+namespace CadastroFestasAPI.DAOs
 {
     public static class ConfigDB
     {

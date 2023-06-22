@@ -6,7 +6,7 @@ using CadastroFestasAPI.Models;
 
 namespace CadastroFestasAPI.DAOs
 {
-    public class AtletaDAO : AutoDAO<Festa>
+    public class FestaDAO : AutoDAO<Festa>
     {
         protected override string Tabela => "festa";
     }
