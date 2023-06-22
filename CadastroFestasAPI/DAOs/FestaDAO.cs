@@ -4,9 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using CadastroFestasAPI.Models;
 
-namespace CadastroAtletaApi.DAOs
+namespace CadastroFestasAPI.DAOs
 {
-    public class AtletaDAO : AutoDAO<festa>
+    public class AtletaDAO : AutoDAO<Festa>
     {
         protected override string Tabela => "festa";
     }

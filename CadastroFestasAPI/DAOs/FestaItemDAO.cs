@@ -2,14 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using CadastroAtletaApi.Models;
+using CadastroFestasAPI.Models;
 
-namespace CadastroAtletaApi.DAOs
+namespace CadastroFestasAPI.DAOs
 {
-    public class AtletaRecordDAO : AutoDAO<AtletaRecord>
+    public class FestaItemDAO : AutoDAO<FestaItem>
     {
-        protected override string Tabela => "atleta_record";
+        protected override string Tabela => "festa_item";
 
-        protected override string? NomeCampoIdMestre => "IdAtleta";
+        protected override string? NomeCampoIdMestre => "IdFesta";
     }
 }

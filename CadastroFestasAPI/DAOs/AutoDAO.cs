@@ -8,7 +8,7 @@ using MySql.Data.MySqlClient;
 using CadastroFestasAPI.Models;
 using Dapper;
 
-namespace CadastroAtletaApi.DAOs
+namespace CadastroFestasAPI.DAOs
 {
     public abstract class AutoDAO<T> where T : BaseModel, new()
     {
