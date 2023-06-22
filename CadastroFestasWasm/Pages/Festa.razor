@@ -1,0 +1,59 @@
+﻿@page "/festas"
+@using CadastroFestasWasm.Helpers;
+@using CadastroFestaDll.DOs;
+
+<h3>Festas</h3>
+
+@if (festas == null)
+{
+    <p><em>Buscando festas...</em></p>
+}
+else
+{
+    <a class="btn btn-primary" href=@($"./festa_cadastrar")>Cadastrar nova</a>
+}
+
+@code {
+    protected async override Task OnInitializedAsync()
+    {
+        festas = await api.RetornarTodosAsync();    
+    }
+    private AcessoApi<FestaDO> api = new AcessoApi<FestaDO>("api/Festa");
+
+    private IList<FestaDO>? festas;
+
+    private FestaDO festaAtual = new FestaDO();
+
+    private void Alterar(FestaDO festa)
+    {
+        festaAtual = new FestaDO
+        {
+                Id = festa.Id,
+                Nome = festa.Nome,
+                Tema = festa.Tema,
+                Data = festa.Data
+        };
+    }
+
+    private async void Excluir(string? id)
+    {
+        if (id != null)
+        {
+            await api.ExcluirAsync(id);
+            festas = await api.RetornarTodosAsync();
+            this.StateHasChanged();
+        }
+    }
+
+    private async void Salvar()
+    {
+        if (festaAtual.Id == null)
+            await api.InserirAsync(festaAtual);
+        else
+            await api.AlterarAsync(festaAtual);
+
+        festaAtual = new FestaDO();
+        festas = await api.RetornarTodosAsync();
+        this.StateHasChanged();
+    }
+}
