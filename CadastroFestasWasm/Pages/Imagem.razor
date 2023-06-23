@@ -31,13 +31,13 @@
                            out var result))
                         {
                             <span>
-                                Stored File Name: @result.StoredFileName
+                                Nome do arquivo salvo: @result.StoredFileName
                             </span>
                         }
                         else
                         {
                             <span>
-                                There was an error uploading the file
+                                Ocorreu um erro no envio do arquivo
                                 (Error: @result.ErrorCode).
                             </span>
                         }
@@ -132,7 +132,7 @@
 
         if (!result.Uploaded)
         {
-            logger.LogInformation("{FileName} not uploaded (Err: 5)", fileName);
+            logger.LogInformation("{FileName} não foi enviada. (Err: 5)", fileName);
             result.ErrorCode = 5;
         }
 
