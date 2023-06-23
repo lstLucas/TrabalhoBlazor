@@ -21,7 +21,7 @@ namespace CadastroFestasAPI.Controllers
             return Ok((await dao.RetornarTodosAsync()).ToDO());
         }
 
-        // GET: api/Atleta/5
+        // GET: api/Festa/Id
         [HttpGet("{id}")]
         public async Task<ActionResult<FestaDO>> GetPorId(string id)
         {
@@ -33,12 +33,12 @@ namespace CadastroFestasAPI.Controllers
             return Ok(objeto.ToDO());
         }
 
-        // POST: api/Atleta
+        // POST: api/Festa
         [HttpPost]
         public async Task<ActionResult<FestaDO>> Post(FestaDO objDO)
         {
             if (objDO == null)
-                return Problem("O Atleta que você está tentando inserir está nulo.");
+                return Problem("Não é possível inserir uma festa Nula.");
 
             var objeto = await objDO.ToModel();
 
@@ -49,13 +49,12 @@ namespace CadastroFestasAPI.Controllers
             return CreatedAtAction(nameof(GetPorId), new { id = objDO.Id }, objDO);
         }
 
-        // PUT: api/Atleta/5
+        // PUT: api/Festa/Id
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(string id, FestaDO novoFestaDO)
         {
             if (id != novoFestaDO.Id)
-                return Problem("Como você pode me enviar um id na rota diferente do id do objeto?");
-                //return BadRequest();
+                return Problem("O id da rota não confere com o Id do objeto");
             
             try
             {
@@ -69,7 +68,7 @@ namespace CadastroFestasAPI.Controllers
             return NoContent();
         }
 
-        // DELETE: api/Atleta/5
+        // DELETE: api/Festa/Id
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(string id)
         {

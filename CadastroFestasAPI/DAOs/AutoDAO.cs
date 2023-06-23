@@ -18,18 +18,16 @@ namespace CadastroFestasAPI.DAOs
 
         public virtual async Task InserirAsync(T obj)
         {
-            //Falta fazer o retorno dos campos em acordo com o objeto
+            
             var sql = $"INSERT INTO {Tabela} ({GetInsertCampos()}) VALUES ({GetInsertValores()})";
             
-            //if (string.IsNullOrEmpty(obj.Id))
-                obj.Id = Guid.NewGuid().ToString();
+            obj.Id = Guid.NewGuid().ToString();
 
             await ExecutarComandoAsync(sql, obj);
         }
 
         public virtual async Task AlterarAsync(T obj)
         {
-            //Falta fazer o retorno dos campos em acordo com o objeto
             var sql = $"UPDATE {Tabela} SET {GetUpdateCampos()} WHERE Id=@Id";
 
             await ExecutarComandoAsync(sql, obj);

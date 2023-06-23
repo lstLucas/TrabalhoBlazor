@@ -62,7 +62,6 @@ namespace CadastroFestaItemAPI.Controllers
         {
             if (id != novoFestaItemDO.Id)
                 return Problem("Como você pode me enviar um id na rota diferente do id do objeto?");
-                //return BadRequest();
             
             try
             {

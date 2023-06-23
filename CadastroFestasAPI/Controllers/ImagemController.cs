@@ -36,9 +36,9 @@ public class ImagemController : ControllerBase
         if (!System.IO.File.Exists(path))
             return NotFound();
 
-        //converting Pdf file into bytes array  
+        //Convertendo arquivo pdf para um array de bites
         var dataBytes = await System.IO.File.ReadAllBytesAsync(path);  
-        //adding bytes to memory stream   
+        //Adicionando bytes à memória 
         var dataStream = new MemoryStream(dataBytes);
 
         return new FileStreamResult(dataStream, "image/png");
@@ -94,7 +94,7 @@ public class ImagemController : ControllerBase
                         await using FileStream fs = new(path, FileMode.Create);
                         await file.CopyToAsync(fs);
 
-                        logger.LogInformation("{FileName} saved at {Path}",
+                        logger.LogInformation("{FileName} salvo em {Path}",
                             trustedFileNameForDisplay, path);
 
                         uploadResult.Uploaded = true;
@@ -102,7 +102,7 @@ public class ImagemController : ControllerBase
                     }
                     catch (IOException ex)
                     {
-                        logger.LogError("{FileName} error on upload (Err: 3): {Message}",
+                        logger.LogError("{FileName} erro no envio (Err: 3): {Message}",
                             trustedFileNameForDisplay, ex.Message);
 
                         uploadResult.ErrorCode = 3;
@@ -113,8 +113,8 @@ public class ImagemController : ControllerBase
             }
             else
             {
-                logger.LogInformation("{FileName} not uploaded because the " +
-                    "request exceeded the allowed {Count} of files (Err: 4)",
+                logger.LogInformation("{FileName} Não foi enviado pois " +
+                    "o pedido ultrapassou {Count} arquivos (Err: 4)",
                     trustedFileNameForDisplay, maxAllowedFiles);
                 uploadResult.ErrorCode = 4;
             }

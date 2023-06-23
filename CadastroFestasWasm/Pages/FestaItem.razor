@@ -80,8 +80,6 @@ else
 
     private async void Atualizar()
     {
-        //NavigationManager.NavigateTo("atletas");
-        //NavigationManager.NavigateTo($"atleta_alterar/{IdMestre}", true);
         itens = await api.RetornarPorIdMestreAsync(IdMestre);
 
         this.StateHasChanged();
