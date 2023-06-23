@@ -1,13 +1,17 @@
 @page "/festa_cadastrar"
 @using CadastroFestasWasm.Helpers;
 @using CadastroFestaDll.DOs;
+@using Microsoft.AspNetCore.Components.Forms;
 @inject NavigationManager NavigationManager;
 
 <PageTitle>Defina sua festa</PageTitle>
 
 <h1>Cadastro de Festa</h1>
 
-<div>
+<EditForm Model="@festa" OnValidSubmit="@Gravar">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
     <div>
         <label class="form-label">Nome</label>
         <input class="form-control" @bind="@festa.Nome" />
@@ -18,13 +22,13 @@
     </div>
     <div>
         <label class="form-label">Data</label>
-        <input class="form-control" @bind="@festa.Data" type="date"/>
+        <InputDate TValue="DateTime" class="form-control" @bind-Value="@festa.Data" />
     </div>
     <div class="mt-2">
-        <button class="btn btn-success" @onclick="Gravar">Gravar</button>
+        <button class="btn btn-success" type="submit">Gravar</button>
         <a class="ml-1 btn btn-secondary" href="./festas">Voltar</a>
     </div>
-</div>
+</EditForm>
 
 
 @code {
@@ -35,11 +39,17 @@
     [Parameter]
     public string Id { get; set; } = "";
 
-    private async void Gravar()
+    protected override void OnInitialized()
+    {
+        festa.Data = DateTime.Now;
+    }
+
+    private async Task Gravar()
     {
         var objRetorno = await api.InserirAsync(festa);
-
         if (objRetorno != null)
             NavigationManager.NavigateTo($"festa_alterar/{objRetorno.Id}");
     }
+
+
 }

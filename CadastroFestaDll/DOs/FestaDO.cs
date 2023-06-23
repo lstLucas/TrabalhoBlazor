@@ -16,6 +16,22 @@ namespace CadastroFestaDll.DOs
         [StringLength(80, ErrorMessage="O tema deve ser inferior a 80 caracteres")]
         public string Tema { get; set; } = "";
 
+        [Required(ErrorMessage ="A Data da festa é necessária!")]
+        [DataPosteriorAtual(ErrorMessage ="A data da festa deve ser posterior à data atual")]
+        
         public DateTime Data { get; set; }
+    }
+
+    public class DataPosteriorAtualAttribute : ValidationAttribute
+    {
+        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+        {
+            DateTime data = (DateTime)value;
+            if (data < DateTime.Now.Date)
+            {
+                return new ValidationResult(ErrorMessage);
+            }
+            return ValidationResult.Success;
+        }
     }
 }
