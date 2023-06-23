@@ -18,12 +18,10 @@ else
             <div class="col">
                 <label class="form-label">Nome do Item</label>
                 <input class="form-control" @bind="@novoItem.Nome" />
-                <ValidationMessage For="() => novoItem.Nome" />
             </div>
             <div class="col">
                 <label class="form-label">Quantidade</label>
                 <input type="int" class="form-control" @bind="@novoItem.Quantidade" />
-                <ValidationMessage For="() => novoItem.Quantidade" />
             </div>
             <div class="col">
                 <br />
