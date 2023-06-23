@@ -1,43 +1,44 @@
-@page "/itens_alterar/{Id}"
+@page "/festa_alterar/{Id}"
 @using CadastroFestasWasm.Helpers;
 @using CadastroFestaDll.DOs;
+@inject NavigationManager NavigationManager;
 
-<h3>Itens</h3>
+<h3>Altere os dados da sua Festa    </h3>
 
-<!--
-    @if (obj == null)
+
+    @if (festa == null)
 {
     <p><em>Carregando...</em></p>
 }
 else
 {
-    <EditForm Model="@obj" OnValidSubmit="@Gravar">
+    <EditForm Model="@festa" OnValidSubmit="@Gravar">
     <DataAnnotationsValidator />
     <ValidationSummary />
         <div>
             <div>
                 <label class="form-label">Nome</label>
-                <input class="form-control" @bind="@obj.Nome" />
-                <ValidationMessage For="() => obj.Nome" />
+                <input class="form-control" @bind="@festa.Nome" />
+                <ValidationMessage For="() => festa.Nome" />
             </div>
             <div>
-                <label class="form-label">Altura</label>
-                <input class="form-control" @bind="@obj.Altura" />
-                <ValidationMessage For="() => obj.Altura" />
+                <label class="form-label">Tema</label>
+                <input class="form-control" @bind="@festa.Tema" />
+                <ValidationMessage For="() => festa.Tema" />
             </div>
             <div>
-                <label class="form-label">Peso</label>
-                <input class="form-control" @bind="@obj.Peso" />
-                <ValidationMessage For="() => obj.Peso" />
+                <label class="form-label">Data</label>
+                <input class="form-control" @bind="@festa.Data" type="date"/>
+                <ValidationMessage For="() => festa.Data" />
             </div>
             <div class="mt-2">
                 <button class="btn btn-success" type="submit">Gravar</button>
-                <a class="ml-1 btn btn-secondary" href="./atletas">Voltar</a>
+                <a class="ml-1 btn btn-secondary" href="./festas">Voltar</a>
             </div>
 
-            <CadastroAtletaRecordManutencao IdMestre=@Id />
+            <FestaItem IdMestre=@Id />
 
-            <Imagem Entidade="atleta" Id=@Id />
+            <Imagem Entidade="festa" Id=@Id />
             
         </div>
     </EditForm>
@@ -46,25 +47,24 @@ else
 @code {
     protected async override Task OnInitializedAsync()
     {        
-        obj = await api.RetornarPorIdAsync(Id);
+        festa = await api.RetornarPorIdAsync(Id);
     }
 
-    private AcessoApi<AtletaDO> api = new AcessoApi<AtletaDO>("api/Atleta");
+    private AcessoApi<FestaDO> api = new AcessoApi<FestaDO>("api/Festa");
 
-    private AtletaDO? obj = null;
+    private FestaDO? festa = null;
 
     [Parameter]
     public string Id { get; set; } = "";
 
     private async void Gravar()
     {
-        if (obj != null)
+        if (festa != null)
         {
-            if (await api.AlterarAsync(obj))
+            if (await api.AlterarAsync(festa))
             {
-                NavigationManager.NavigateTo("atletas");
+                NavigationManager.NavigateTo("festas");
             }
         }
     }
 }
--->

@@ -1,50 +1,45 @@
-@page "/itens_incluir"
+@page "/festa_cadastrar"
 @using CadastroFestasWasm.Helpers;
 @using CadastroFestaDll.DOs;
+@inject NavigationManager NavigationManager;
 
 <PageTitle>Defina sua festa</PageTitle>
 
 <h1>Cadastro de Festa</h1>
-<!--
+
 <div>
     <div>
         <label class="form-label">Nome</label>
-        <input class="form-control" @bind="@obj.Nome" />
+        <input class="form-control" @bind="@festa.Nome" />
     </div>
     <div>
-        <label class="form-label">Altura</label>
-        <input class="form-control" @bind="@obj.Altura" />
+        <label class="form-label">Tema</label>
+        <input class="form-control" @bind="@festa.Tema" />
     </div>
     <div>
-        <label class="form-label">Peso</label>
-        <input class="form-control" @bind="@obj.Peso" />
+        <label class="form-label">Data</label>
+        <input class="form-control" @bind="@festa.Data" type="date"/>
     </div>
     <div class="mt-2">
         <button class="btn btn-success" @onclick="Gravar">Gravar</button>
-        <a class="ml-1 btn btn-secondary" href="./atletas">Voltar</a>
+        <a class="ml-1 btn btn-secondary" href="./festas">Voltar</a>
     </div>
 </div>
--->
+
 
 @code {
     private AcessoApi<FestaDO> api = new AcessoApi<FestaDO>("api/Festa");
 
-    private IList<FestaDO>? festas;
-
-    private FestaDO festaAtual = new FestaDO();
-
-    /*private AcessoApi<AtletaDO> api = new AcessoApi<AtletaDO>("api/Atleta");
-
-    private AtletaDO obj = new AtletaDO();
+    private FestaDO festa = new FestaDO();
 
     [Parameter]
     public string Id { get; set; } = "";
 
     private async void Gravar()
     {
-        var objRetorno = await api.InserirAsync(obj);
-        
+        var objRetorno = await api.InserirAsync(festa);
+
         if (objRetorno != null)
-            NavigationManager.NavigateTo($"atleta_alterar/{objRetorno.Id}");
-    }*/
+            NavigationManager.NavigateTo($"festa_alterar/{objRetorno.Id}");
+    }
 }

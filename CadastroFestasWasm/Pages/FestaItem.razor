@@ -1,0 +1,112 @@
+﻿@*@page "/festa_alterar/{Id}"*@
+@using CadastroFestasWasm.Helpers;
+@using CadastroFestaDll.DOs;
+@inject NavigationManager NavigationManager;
+
+<h3>Itens desejados na festa</h3>
+
+@if (itens == null)
+{
+    <p><em>Carregando...</em></p>
+}
+else
+{
+    <EditForm Model="@novoItem" OnValidSubmit="@Inserir">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+        <div class="row">
+            <div class="col">
+                <label class="form-label">Nome do Item</label>
+                <input class="form-control" @bind="@novoItem.Nome" />
+                <ValidationMessage For="() => novoItem.Nome" />
+            </div>
+            <div class="col">
+                <label class="form-label">Quantidade</label>
+                <input type="int" class="form-control" @bind="@novoItem.Quantidade" />
+                <ValidationMessage For="() => novoItem.Quantidade" />
+            </div>
+            <div class="col">
+                <br />
+                <button class="btn btn-success mt-2" type="submit">Inserir</button>
+            </div>
+        </div>
+    </EditForm>
+
+    <EditForm Model="@novoItem" OnValidSubmit="@Atualizar">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nome do Item</th>
+                    <th>Quantidade</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in itens)
+                {
+                    <tr>
+                        <td>@item.Nome</td>
+                        <td>@item.Quantidade</td>
+                        <td>
+                            @if (item.Id != null)
+                            {
+                                <button class="btn btn-danger" @onclick="() => ExcluirDetalhe(item.Id)">
+                                    Excluir
+                                </button>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </EditForm>
+    <hr />
+}
+
+@code {
+    protected async override Task OnInitializedAsync()
+    {
+        itens = await api.RetornarPorIdMestreAsync(IdMestre);
+    }
+
+    private AcessoApi<FestaItemDO> api = new AcessoApi<FestaItemDO>("api/FestaItem");
+
+    private IList<FestaItemDO>? itens = null;
+
+    public FestaItemDO novoItem = new FestaItemDO { };
+
+    [Parameter]
+    public string IdMestre { get; set; } = "";
+
+    private async void Atualizar()
+    {
+        //NavigationManager.NavigateTo("atletas");
+        //NavigationManager.NavigateTo($"atleta_alterar/{IdMestre}", true);
+        itens = await api.RetornarPorIdMestreAsync(IdMestre);
+
+        this.StateHasChanged();
+    }
+
+    private async void Inserir()
+    {
+        novoItem.IdFesta = IdMestre;
+
+        await api.InserirAsync(novoItem);
+
+        itens = await api.RetornarPorIdMestreAsync(IdMestre);
+
+        novoItem = new FestaItemDO { };
+
+        this.StateHasChanged();
+    }
+
+    private async void ExcluirDetalhe(string id)
+    {
+        if (id != null)
+        {
+            await api.ExcluirAsync(id);
+
+            Atualizar();
+        }
+    }
+}
