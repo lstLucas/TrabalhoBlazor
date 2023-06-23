@@ -26,7 +26,7 @@ else
                 <tr>
                     <td>@festa.Nome</td>
                     <td>@festa.Tema</td>
-                    <td>@festa.Data.ToString()</td>
+                    <td>@festa.Data.ToString("dd/MM/yyyy")</td>
                     <td>
                         <a class="btn btn-warning" href=@($"./festa_alterar/{festa.Id}")>Alterar</a>
                         <button class="btn btn-danger" @onclick="() => Excluir(festa.Id)">
