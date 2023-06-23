@@ -4,11 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CadastroFestaDll.DOs
 {
     public class FestaItemDO : BaseDO
     {
+        [ForeignKey("Festa")]
         public string IdFesta { get; set; }
 
         [Required]
