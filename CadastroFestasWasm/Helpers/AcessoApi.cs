@@ -10,7 +10,7 @@ namespace CadastroFestasWasm.Helpers
     {
         public AcessoApi(string api)
         {
-            cliente.BaseAddress = new Uri("http://localhost:5039/");
+            cliente.BaseAddress = new Uri("http://localhost:7111/");
             this.api = api;
         }
 
