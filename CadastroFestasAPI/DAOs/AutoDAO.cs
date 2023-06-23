@@ -174,25 +174,6 @@ namespace CadastroFestasAPI.DAOs
 
         private string RetornarConnectionString()
         {
-            ////return "SERVER=localhost;DATABASE=teste;UID=root;PASSWORD=;"
-            
-
-
-            //string server = "localhost";
-            //string database = "teste";
-            //string uid = "root";
-            //string password = "";
-
-            //string connectionString = 
-            //"SERVER=" + server + ";" +
-            //"DATABASE=" + database + ";" + 
-            //"UID=" + uid + ";" +
-            //"PASSWORD=" + password + ";";
-
-            //return connectionString;
-
-
-
             return ConfigDB.StringConexao;
         }
     }

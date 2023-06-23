@@ -6,17 +6,43 @@
 
 @if (festas == null)
 {
-    <p><em>Buscando festas...</em></p>
+    <p><em>Carregando...</em></p>
 }
 else
 {
+
     <a class="btn btn-primary" href=@($"./festa_cadastrar")>Cadastrar nova</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Tema</th>
+                <th>Data</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var festa in festas)
+            {
+                <tr>
+                    <td>@festa.Nome</td>
+                    <td>@festa.Tema</td>
+                    <td>@festa.Data.ToString()</td>
+                    <td>
+                        <a class="btn btn-warning" href=@($"./festa_alterar/{festa.Id}")>Alterar</a>
+                        <button class="btn btn-danger" @onclick="() => Excluir(festa.Id)">
+                            Excluir
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 }
 
 @code {
     protected async override Task OnInitializedAsync()
     {
-        festas = await api.RetornarTodosAsync();    
+        festas = await api.RetornarTodosAsync();
     }
     private AcessoApi<FestaDO> api = new AcessoApi<FestaDO>("api/Festa");
 

@@ -8,11 +8,11 @@ using CadastroFestasAPI.DAOs;
 using CadastroFestasAPI.Controllers.Extensoes;
 using CadastroFestaDll.DOs;
 
-namespace CadastroAtletaRecordApi.Controllers
+namespace CadastroFestaItemAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class AtletaRecordController : ControllerBase
+    public class FestaItemController : ControllerBase
     {
         // GET: api/FestaItem
         [HttpGet]
