@@ -6,16 +6,16 @@
 @inject ILogger<Imagem> Logger
 @using CadastroFestaDll;
 
-<h1>Upload Files</h1>
+<h1>Envie uma imagem referência para a festa</h1>
 
 <p>
     <label>
-        Upload up to @maxAllowedFiles files:
+        Envie no máximo @maxAllowedFiles arquivo:
         <InputFile OnChange="@OnInputFileChange" multiple />
     </label>
 </p>
 
-<img src=@($"http://localhost:5039/api/imagem/{Entidade}/{Id}") />
+<img src=@($"http://localhost:7111/api/imagem/{Entidade}/{Id}") />
 
 @if (files.Count > 0)
 {
@@ -111,7 +111,7 @@
 
         if (upload)
         {
-            var response = await Http.PostAsync($"http://localhost:5039/api/imagem/{Entidade}/{Id}", content);
+            var response = await Http.PostAsync($"http://localhost:7111/api/imagem/{Entidade}/{Id}", content);
 
             var newUploadResults = await response.Content
                 .ReadFromJsonAsync<IList<UploadResult>>();
